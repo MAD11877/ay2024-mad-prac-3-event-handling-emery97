@@ -32,7 +32,7 @@ public class ListActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.ListActivityImage);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
+//
         builder.setTitle("Profile");
         builder.setMessage("MADness");
         builder.setCancelable(true);
