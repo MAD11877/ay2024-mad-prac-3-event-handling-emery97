@@ -57,5 +57,8 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+        // show the alert dialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

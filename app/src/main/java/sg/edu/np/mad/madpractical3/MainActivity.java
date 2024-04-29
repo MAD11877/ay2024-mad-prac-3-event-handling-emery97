@@ -38,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         tvDescription.setText(user.description);
         btnFollow.setText("Follow");
 
+
+        // Receive the random number passed from ListActivity
+        int randomNumber = getIntent().getIntExtra("randomNo", 0);
+
+        // Display the name and random number
+        tvName.setText(user.name + " (" + randomNumber + ")");
+
         btnFollow.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 if (user.followed == true){
