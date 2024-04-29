@@ -26,26 +26,11 @@ public class ListActivity extends AppCompatActivity {
             return insets;
         });
         ImageView image = findViewById(R.id.ListActivityImage);
-        image.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        /*image.setOnClickListener(new View.OnClickListener(){
 
-                builder.setTitle("Profile");
-                builder.setMessage("MADness");
-                builder.setCancelable(true);
-                builder.setPositiveButton(“Yes”, new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-		<action>
-                    }
-                });
-                builder.setNegativeButton(“No”, new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-		<action>
-                    }
-                });
 
             }
-        });
+        });*/
 
 
 
