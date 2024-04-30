@@ -2,6 +2,7 @@ package sg.edu.np.mad.madpractical3;
 
 import android.os.Bundle;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.activity.EdgeToEdge;
@@ -15,52 +16,61 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Random;
 
 public class ListActivity extends AppCompatActivity {
-
+    final String Title = "List Activity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_list);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Log.v(Title, "onStart:");
 
-
-        ImageView profileImg = (ImageView) findViewById(R.id.imageView4);
-
-        profileImg.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V){
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
-
-                builder.setTitle("Profile");
-                builder.setMessage("MADness");
-                builder.setCancelable(true);
-                builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Random random = new Random();
-                        int randomNumber = random.nextInt(900000) + 100000;
-
-                        Intent activityName = new Intent(ListActivity.this, MainActivity.class);
-
-                        activityName.putExtra("randomNumber", randomNumber);
-                        startActivity(activityName);
-                        dialog.dismiss();
-                    }
-                });
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-
-                dialog.show();
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.v(Title, "onResume:");
+        ImageView profileImg = findViewById(R.id.imageView4);
+        profileImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(Title,"Image Pressed:");
+                imageAlert();
             }
         });
+
+    }
+
+    private void imageAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+
+        builder.setTitle("Profile");
+        builder.setMessage("MADness");
+        builder.setCancelable(true);
+        builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Random random = new Random();
+                int randomNumber = random.nextInt(900000) + 100000;
+
+                Intent activityName = new Intent(ListActivity.this, MainActivity.class);
+
+                activityName.putExtra("randomNumber", randomNumber);
+                startActivity(activityName);
+
+            }
+        });
+        AlertDialog.Builder close = builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
